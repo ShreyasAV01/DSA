@@ -2,6 +2,8 @@ import java.util.*;
 
 public class FindDuplicateNumber {
     private static void findDuplicateUsingLoops(int[] arr) {
+//        Time Complexity: O(N2)
+//        Auxiliary Space: O(N)
         ArrayList<Integer> duplicatesList = new ArrayList<>();
          for (int i = 0;i< arr.length;i++){
             for (int j =i+1;j< arr.length;j++){
@@ -14,6 +16,8 @@ public class FindDuplicateNumber {
     }
 
     private static void findDuplicateUsingMap(int[] arr) {
+//        Time Complexity: O(N)
+//        Auxiliary Space: O(N)
         Map<Integer,Integer> map =  new HashMap<>();
         for (int i :arr) {
             map.put(i, map.containsKey(i) ? map.get(i) + 1 : 1);
