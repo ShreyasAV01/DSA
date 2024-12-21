@@ -85,9 +85,17 @@ public class SortEmployeeBasedOnSalary {
 
     private static void sortEmployees(List<Employee> empList){
         Collections.sort(empList,new EmployeeComparatorBasedOnSalaryAndName());
-        System.out.println("Sorting using java comparator");
+        System.out.println("Sorting using EmployeeComparatorBasedOnSalaryAndName comparator");
         for (Employee emp: empList) {
-            System.out.println("Employee Name: "+ emp.getName()+ "Salary: {}"+emp.getSalary() );
+            System.out.println("Employee Name: "+ emp.getName()+ " Salary: {}"+emp.getSalary() );
+        }
+
+    }
+    private static void sortEmployeesBasedOnSalary(List<Employee> empList){
+        Collections.sort(empList,new EmployeeComparator());
+        System.out.println("Sorting using Employee comparator");
+        for (Employee emp: empList) {
+            System.out.println("Employee Name: "+ emp.getName()+ " Salary: {}"+emp.getSalary() );
         }
 
     }
@@ -95,7 +103,7 @@ public class SortEmployeeBasedOnSalary {
         empList.stream().sorted(Comparator.comparing(Employee::getSalary)).collect(Collectors.toList());
         System.out.println("Sorting using java 8");
         for (Employee emp: empList) {
-            System.out.println("Employee Name: "+ emp.getName()+ "Salary: {}"+emp.getSalary() );
+            System.out.println("Employee Name: "+ emp.getName()+ " Salary: {}"+emp.getSalary() );
         }
 
     }
@@ -112,6 +120,7 @@ public class SortEmployeeBasedOnSalary {
         employeeList.add(e4);
 
         sortEmployees(employeeList);
+        sortEmployeesBasedOnSalary(employeeList);
         sortEmployeeUsingJava8(employeeList);
 
     }
