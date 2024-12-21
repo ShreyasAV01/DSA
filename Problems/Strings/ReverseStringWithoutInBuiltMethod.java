@@ -17,22 +17,40 @@ public class ReverseStringWithoutInBuiltMethod {
                 .mapToObj(c -> String.valueOf((char) c)) // Convert int to char and then to String
                 .reduce((acc, ch) -> ch + acc) // Reverse by accumulating in reverse order
                 .orElse("");
-        System.out.println(" Using Java8: " + reversed);
+        System.out.println("Using Java8: " + reversed);
     }
 
     private static void reverseUsingStack(String str) {
-        StringBuilder stringBuilder = new StringBuilder(str);
         Stack<Character> stack = new Stack<>();
 //        pushing to stack
         for (char c : str.toCharArray()) {
             stack.push(c);
         }
 //        poping data from stack and append to string
+        StringBuilder result = new StringBuilder(str.length());
         while (!stack.empty()) {
-            stringBuilder.append(stack.pop());
+            result.append(stack.pop());
         }
 
-        System.out.println(" Using Stack: " + stringBuilder);
+        System.out.println("Using Stack: " + result);
+    }
+
+    private static void reverseUsingTwoPointer(String str){
+        char[] strCharArray = str.toCharArray();
+        int left = 0;
+        int right = strCharArray.length - 1;
+
+        while (left <right){
+//            swapping characters
+            char temp = strCharArray[left];
+            strCharArray[left] = strCharArray[right];
+            strCharArray[right] = temp;
+            left++;
+            right--;
+        }
+
+        System.out.println("using Two pointer technique: "+ new String(strCharArray));
+
     }
 
     public static void main(String[] args) {
@@ -40,5 +58,6 @@ public class ReverseStringWithoutInBuiltMethod {
         reverseUsingForLoop(str);
         reverseUsingJava8(str);
         reverseUsingStack(str);
+        reverseUsingTwoPointer(str);
     }
 }
