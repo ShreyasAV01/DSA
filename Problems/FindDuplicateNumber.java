@@ -27,7 +27,6 @@ public class FindDuplicateNumber {
             if (entry.getValue()>1){
                 System.out.println("duplicate data is: "+entry.getKey());
             }
-
         }
 
     }
@@ -35,9 +34,6 @@ public class FindDuplicateNumber {
         int[] arr = {1,2,3,4,3,7};
         findDuplicateUsingLoops(arr);
         findDuplicateUsingMap(arr);
-
-
-
     }
 
 
