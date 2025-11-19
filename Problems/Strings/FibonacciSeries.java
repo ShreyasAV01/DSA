@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class FibonacchiSeries {
+public class FibonacciSeries {
 
     private static void getFibonacciUsingDynamicProgramming(Integer limit){
         List<Integer> fibonacchiIntList = new ArrayList<>();

@@ -2,6 +2,7 @@ package Streams;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.OptionalDouble;
 import java.util.stream.Collectors;
 
 public class AvgAgeOfPersonsInList {
@@ -17,7 +18,9 @@ public class AvgAgeOfPersonsInList {
         peopleList.add(p3);
 
         double averageAge1 = peopleList.stream().mapToInt(Person::getAge).average().orElse(0);
-
+peopleList.stream().collect(Collectors.averagingInt(Person::getAge));
+peopleList.stream().mapToInt(Person::getAge).average();
+        double v = peopleList.stream().map(Person::getAge).reduce(0, Integer::sum) / (double) peopleList.size();
         Double averageAge2 = peopleList.stream().collect(Collectors.averagingInt(Person::getAge));
 
         double averageAge3 = peopleList.stream().map(Person::getAge).reduce(0, Integer::sum) / (double) peopleList.size();
