@@ -62,7 +62,13 @@ public class SecondLargestElement {
     }
 
     public static int getSecondLargestUsingJava8Approach(int[] arr) {
-        int secondLargest = Arrays.stream(arr).boxed().distinct().sorted(Comparator.reverseOrder()).skip(1).findFirst().get();
+        int secondLargest = Arrays.stream(arr)
+                .boxed()
+                .distinct()
+                .sorted(Comparator.reverseOrder())
+                .skip(1)
+                .findFirst()
+                .get();
         System.out.println("Second largest value using getSecondLargestUsingJava8Approach is :" + secondLargest);
         return secondLargest;
     }
