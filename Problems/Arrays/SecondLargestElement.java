@@ -1,6 +1,7 @@
 package Arrays;
 
 import java.util.Arrays;
+import java.util.Comparator;
 
 public class SecondLargestElement {
 
@@ -60,10 +61,16 @@ public class SecondLargestElement {
         return secondLargest;
     }
 
+    public static int getSecondLargestUsingJava8Approach(int[] arr) {
+        int secondLargest = Arrays.stream(arr).boxed().distinct().sorted(Comparator.reverseOrder()).skip(1).findFirst().get();
+        System.out.println("Second largest value using getSecondLargestUsingJava8Approach is :" + secondLargest);
+        return secondLargest;
+    }
     public static void main(String[] args) {
         int[] arr = {12, 35, 1, 10, 34, 1};
         getSecondLargestUsingNativeApproach(arr);
         getSecondLargestUsingBetterApproach(arr);
         getSecondLargestUsingOptimalApproach(arr);
+        getSecondLargestUsingJava8Approach(arr);
     }
 }
