@@ -1,6 +1,8 @@
 package Arrays;
 
 import java.util.Arrays;
+import java.util.Comparator;
+import java.util.stream.Collectors;
 
 public class ThirdLargestElement {
 
@@ -59,11 +61,18 @@ public class ThirdLargestElement {
         System.out.println("Third largest element using thirdLargestUsingSingleLoop is : "+ thirdLargest);
         return thirdLargest;
     }
+
+    public static int thirdlargestUsingJava8(int [] arr){
+        int thirdlargest = Arrays.stream(arr).boxed().distinct().sorted(Comparator.reverseOrder()).skip(2).findFirst().orElse(-1);
+        System.out.println("Third largest element using thirdlargestUsingJava8 is : "+ thirdlargest);
+        return thirdlargest;
+    }
     public static void main(String[] args) {
         int[] arr = {1, 14, 2, 16, 10, 20};
         thirdLargestUsingSorting(arr);
         thirdLargestUsingThreeLoops(arr);
         thirdLargestUsingSingleLoop(arr);
+        thirdlargestUsingJava8(arr);
     }
     
 }
