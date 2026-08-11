@@ -1,5 +1,5 @@
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class FirstNonRepeatedCharacter {
 //"swiss"
@@ -9,13 +9,16 @@ public class FirstNonRepeatedCharacter {
 
     public static void main(String[] args) {
         String s = "swiss";
+        System.out.println("Original string : "+s);
         findFirstNonRepeatedCharacterUsingIndexOfLastIndexOf(s);
         findFirstNonRepeatedCharacterUsingHashMapWay(s);
         findFirstNonRepeatedCharacterUsingLinkedHashMapWay(s);
+        findFirstNonRepeatedCharacterUsingStreams(s);
+        findFirstNonRepeatedCharacterUsingStreamsIndexOf(s);
     }
 
     private static void findFirstNonRepeatedCharacterUsingLinkedHashMapWay(String str) {
-        Map<Character, Integer> characterFreqMap = new HashMap<>();
+        Map<Character, Integer> characterFreqMap = new LinkedHashMap<>();
 
         for (char c : str.toCharArray()) {
             characterFreqMap.put(c, characterFreqMap.getOrDefault(c, 0) + 1);
@@ -27,6 +30,9 @@ public class FirstNonRepeatedCharacter {
             }
 
         }
+
+//        Time complexity: O(n)
+//        Space complexity: O(k), where k is the number of distinct characters
     }
 
     private static void findFirstNonRepeatedCharacterUsingHashMapWay(String str) {
@@ -42,6 +48,9 @@ public class FirstNonRepeatedCharacter {
                 break;
             }
         }
+
+//        Time: O(n)
+//        Space: O(k), where k = number of distinct characters
     }
 
     private static void findFirstNonRepeatedCharacterUsingIndexOfLastIndexOf(String str) {
@@ -52,5 +61,34 @@ public class FirstNonRepeatedCharacter {
                 break;
             }
         }
+
+//        Time: O(n²)     Space: O(1)
+    }
+
+
+    private static void findFirstNonRepeatedCharacterUsingStreams(String str){
+
+        Character character = str.chars()
+                .mapToObj(c -> (char) c)
+                .collect(Collectors.groupingBy(
+                        ch -> ch, LinkedHashMap::new, Collectors.counting()))
+                .entrySet()
+                .stream()
+                .filter(entry -> entry.getValue() == 1)
+                .map(Map.Entry::getKey)
+                .findFirst()
+                .orElse(null);
+        System.out.println("findFirstNonRepeatedCharacterUsingStreams : "+ character);
+
+//       Time:  O(n) Space:  O(k) space.
+    }
+
+    private static void findFirstNonRepeatedCharacterUsingStreamsIndexOf(String str){
+        Character character = str.chars()
+                .mapToObj(c -> (char) c)
+                .filter(ch -> str.indexOf(ch) == str.lastIndexOf(ch))
+                .findFirst()
+                .orElse(null);
+        System.out.println("findFirstNonRepeatedCharacterUsingStreamsIndexOf : "+character);
     }
 }
